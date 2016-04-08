@@ -1,0 +1,26 @@
+{
+	"clouddiskplayer_description": {
+		"description": "",
+		"message": "Video player helper for cloud disk providers"
+	},
+	"clouddiskplayer_name": {
+		"description": "",
+		"message": "Cloud disk player helper"
+	},
+	"clouddiskplayer_transcode": {
+		"description": "",
+		"message": "Transcoded video"
+	},
+	"clouddiskplayer_original": {
+		"description": "",
+		"message": "Original video"
+	},
+	"clouddiskplayer_install": {
+		"description": "",
+		"message": "Install"
+	},
+	"clouddiskplayer_install2": {
+		"description": "",
+		"message": "Chrome app to support video playback"
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"clouddiskplayer_description": {
+		"description": "",
+		"message": "为 360 等云盘提供在线视频播放辅助增强功能"
+	},
+	"clouddiskplayer_name": {
+		"description": "",
+		"message": "云盘播放助手"
+	},
+	"clouddiskplayer_transcode": {
+		"description": "",
+		"message": "转码视频"
+	},
+	"clouddiskplayer_original": {
+		"description": "",
+		"message": "原画视频"
+	},
+	"clouddiskplayer_install": {
+		"description": "",
+		"message": "安装"
+	},
+	"clouddiskplayer_install2": {
+		"description": "",
+		"message": "Chrome 应用支持视频播放"
+	}
+}
