@@ -4,11 +4,18 @@ function vxg_play_video(vlink)
 {
 	var init = 0;
 	// replace flash player with VXG player if needed
-	if ($("#StrobeMediaPlayback").length > 0) {
+	if ($("#StrobeMediaPlayback").length > 0)
+		var replace_obj = $("#StrobeMediaPlayback");
+	else if ($("#main").length > 0)
+		var replace_obj = $("#main");
+	else
+		var replace_obj = null;
+
+	if (replace_obj != null) {
 		// initial player width and height are only useful when return from full-screen
 		var player_width = $("#main").outerWidth(true) - 30;
 		var player_height = $("#main").outerHeight(true) - 20;
-		$("#StrobeMediaPlayback").replaceWith('<div class="vxgplayer" id="cloudplayerhelper_360_vxg_player" width="' + player_width + '" height="' + player_height + '" url="' + vlink + '" nmf-src="' + chrome.extension.getURL("pnacl/Release/media_player.nmf") + '" aspect-ratio latency="3000000" autostart controls avsync></div>');
+		replace_obj.replaceWith('<div class="vxgplayer" id="cloudplayerhelper_360_vxg_player" width="' + player_width + '" height="' + player_height + '" url="' + vlink + '" nmf-src="' + chrome.extension.getURL("pnacl/Release/media_player.nmf") + '" aspect-ratio latency="3000000" autostart controls avsync></div>');
 		init = 1;
 	} else {
 		$("#cloudplayerhelper_360_vxg_player").width("100%");
@@ -38,6 +45,17 @@ function vxg_play_video(vlink)
 	return false;
 }
 
+function vxg_pause()
+{
+	var vxg_cloud_player = vxgplayer('cloudplayerhelper_360_vxg_player');
+	if (vxg_cloud_player) {
+		if (vxg_cloud_player.isPlaying())
+			vxg_cloud_player.pause();
+		else
+			vxg_cloud_player.play();
+	}
+}
+
 $(document).bind('DOMNodeInserted', function(e) {
 	if ($("#cloudplayerhelper_div").length <= 0) {
 		$("div.dl_app").before('<div id="cloudplayerhelper_div" style="display:inline; padding-left:40px;"><img id="cloudplayerhelper_icon" style="width:48px; height:48px; vertical-align:middle;" src="' + chrome.extension.getURL("icons/48.png") + '"/><span style="display:inline-block; padding-left:10px; height:48px; vertical-align:middle;"><a id="cloudplayerhelper_m3u8_link" href="" style="color:#FFFFFF;">[' + chrome.i18n.getMessage("clouddiskplayer_transcode") + ']</a>&nbsp;&nbsp;&nbsp;<a id="cloudplayerhelper_org_link" href="" style="color:#FFFFFF;">[' + chrome.i18n.getMessage("clouddiskplayer_original") + ']</a><span id="vxg_install_span" style="display:none;">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">(' + chrome.i18n.getMessage("clouddiskplayer_install") + ' <a href="https://chrome.google.com/webstore/detail/' + vxg_ext_id + '" target="_blank" style="color:#970000;">VXG Media Player</a> ' + chrome.i18n.getMessage("clouddiskplayer_install2") + ')</font></span></span></div>');
@@ -45,7 +63,7 @@ $(document).bind('DOMNodeInserted', function(e) {
 		// fill real m3u8 and download links
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
-		script.innerHTML = "if (SYS_CONF.m3u8Url) { document.getElementById('cloudplayerhelper_m3u8_link').href = SYS_CONF.m3u8Url; } else { document.getElementById('cloudplayerhelper_m3u8_link').style.display = 'none'; } if (SYS_CONF.videoUrl) { document.getElementById('cloudplayerhelper_org_link').href = SYS_CONF.videoUrl; } else { document.getElementById('cloudplayerhelper_org_link').style.display = 'none'; }";
+		script.innerHTML = "if (SYS_CONF.m3u8Url) { document.getElementById('cloudplayerhelper_m3u8_link').href = SYS_CONF.m3u8Url; } else { document.getElementById('cloudplayerhelper_m3u8_link').style.display = 'none'; SYS_CONF.m3u8Url = ' '; } if (SYS_CONF.videoUrl) { document.getElementById('cloudplayerhelper_org_link').href = SYS_CONF.videoUrl; } else { document.getElementById('cloudplayerhelper_org_link').style.display = 'none'; }";
 		document.head.appendChild(script);
 		document.head.removeChild(script);
 
@@ -54,6 +72,9 @@ $(document).bind('DOMNodeInserted', function(e) {
 		});
 		$("#cloudplayerhelper_org_link").click(function(e) {
 			return vxg_play_video(this.href);
+		});
+		$("#cloudplayerhelper_icon").click(function(e) {
+			return vxg_pause();
 		});
 	}
 });
