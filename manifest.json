@@ -10,13 +10,13 @@
 	"name": "__MSG_clouddiskplayer_name__",
 	"content_scripts": [
 		{
-			"matches": ["http://*.yunpan.360.cn/my*"],
+			"matches": ["http://*.yunpan.360.cn/my*", "https://*.yunpan.360.cn/my*"],
 			"js": ["js/jquery-2.1.3.min.js", "js/360-open-player.js"]
 		},
 		{
-			"matches": ["http://*.yunpan.360.cn/videoPlayer/*"],
-			"css": ["css/vxgplayer-1.7.44.min.css"],
-			"js": ["js/jquery-2.1.3.min.js", "js/vxgplayer-1.7.44.min.js", "js/360-player.js"]
+			"matches": ["http://*.yunpan.360.cn/videoPlayer/*", "https://*.yunpan.360.cn/videoPlayer/*"],
+			"css": ["css/vxgplayer-1.7.45.min.css"],
+			"js": ["js/jquery-2.1.3.min.js", "js/vxgplayer-1.7.45.min.js", "js/360-player.js"]
 		}
 	],
 	"web_accessible_resources": [
@@ -25,5 +25,5 @@
 		"pnacl/Release/media_player.pexe"
 	],
 	"permissions": [],
-	"version": "0.2"
+	"version": "0.3"
 }
