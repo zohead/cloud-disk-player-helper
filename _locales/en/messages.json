@@ -22,9 +22,5 @@
 	"clouddiskplayer_install2": {
 		"description": "",
 		"message": "Chrome app to support video playback"
-	},
-	"clouddiskplayer_https_redirect": {
-		"description": "",
-		"message": "Video player helper may not be able to play video correctly on HTTPS page,\nwould you like to redirect to HTTP version page?"
 	}
 }

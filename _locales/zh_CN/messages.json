@@ -22,9 +22,5 @@
 	"clouddiskplayer_install2": {
 		"description": "",
 		"message": "Chrome 应用支持视频播放"
-	},
-	"clouddiskplayer_https_redirect": {
-		"description": "",
-		"message": "云盘播放助手播放 HTTPS 网页的在线视频可能存在问题，\n是否需要自动转到 HTTP 版网页？"
 	}
 }
